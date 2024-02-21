@@ -1,4 +1,4 @@
-﻿# Define the number of days thresholdsss
+﻿# Define the number of days thresholds
 $ThresholdDays = 14
 # Calculate the threshold date
 $ThresholdDate = (Get-Date).AddDays(-$ThresholdDays)
@@ -15,6 +15,7 @@ foreach ($profile in $UserProfiles) {
     }
 }
 # Output the results
+#sample yml
 if ($ProfilesToDelete.Count -gt 0) {
     Write-Output "User profiles to be deleted:"
     $ProfilesToDelete | ForEach-Object { $_.LocalPath }
