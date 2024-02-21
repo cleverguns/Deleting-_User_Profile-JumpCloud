@@ -29,3 +29,10 @@ Once all deletions are attempted, it outputs a summary message indicating the su
 
 End:
 The script execution ends.
+
+
+
+To follow: Github Actions:
+
+
+
