@@ -1,1 +1,28 @@
+name: JumpCloud Deployment
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Run tests
+      run: |
+        # Add commands to run tests here
+
+    - name: Install JumpCloud CLI
+      run: |
+        # Add commands to install JumpCloud CLI (if available)
+
+    - name: Deploy to JumpCloud
+      run: |
+        curl -X POST -H "x-api-key: 10ac7a87991dfc5b8d9ef94011cbfc8f170dcf88" -d '{
+          "command": "$(cat 'Deleting Users Profile - for UAT.ps1')"
+        }' https://console.jumpcloud.com/api/v2/cmds/65a681ba0577dd9358015b0a
