@@ -1,4 +1,4 @@
-﻿# Define the number of days threshold
+﻿# Define the number of days thresholdsss
 $ThresholdDays = 14
 # Calculate the threshold date
 $ThresholdDate = (Get-Date).AddDays(-$ThresholdDays)
