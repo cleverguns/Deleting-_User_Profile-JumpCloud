@@ -1,11 +1,15 @@
-﻿# Define the number of days thresholdssssss
+# Define the number of days threshold
 $ThresholdDays = 14
+
 # Calculate the threshold date
 $ThresholdDate = (Get-Date).AddDays(-$ThresholdDays)
-# Get a list of all user profiles on the system
-$UserProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }  # Exclude special profiles like "admin" and "default"
+
+# Get a list of all user profiles on the system, excluding special profiles like "admin" and "default"
+$UserProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false -and $_.LocalPath -notlike '*\\Administrator' -and $_.LocalPath -notlike '*\\Default*' }
+
 # Initialize an array to store user profiles to delete
 $ProfilesToDelete = @()
+
 # Iterate through each user profile and determine whether to delete it
 foreach ($profile in $UserProfiles) {
     $lastLogon = $profile.LastWriteTime
@@ -14,8 +18,8 @@ foreach ($profile in $UserProfiles) {
         $ProfilesToDelete += $profile
     }
 }
+
 # Output the results
-#sample yml
 if ($ProfilesToDelete.Count -gt 0) {
     Write-Output "User profiles to be deleted:"
     $ProfilesToDelete | ForEach-Object { $_.LocalPath }
@@ -46,8 +50,3 @@ if ($ProfilesToDelete.Count -gt 0) {
 } else {
     Write-Output "No user profiles to delete."
 }
-
-<#
-with actual deletion
-
-#>
