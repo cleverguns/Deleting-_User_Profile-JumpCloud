@@ -4,13 +4,6 @@ $ThresholdDays = 14
 $ThresholdDate = (Get-Date).AddDays(-$ThresholdDays)
 # Get a list of all user profiles on the system
 $UserProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }  # Exclude special profiles like "admin" and "default"
-<# 
-admin delete 
-
-#>
-
-
-
 # Initialize an array to store user profiles to delete
 $ProfilesToDelete = @()
 # Iterate through each user profile and determine whether to delete it
